@@ -1,4 +1,4 @@
-appstoreconnect
+appstoreconnect==0.9.1
 pymsteams==0.1.15
 firebase_admin==5.0.3
 requests==2.23.0

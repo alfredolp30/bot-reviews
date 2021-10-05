@@ -47,11 +47,13 @@ def getReports():
         dbManager = DBManager()
         logging.debug("run work to get reports")
         report = Report(dbManager, configManager, msTeams, firebaseBucket)
-        report.generateReport(Platform.android)
-        report.generateReport(Platform.ios)
 
         reportIntervalInSeconds = report.intervalReportInDays * 24 * 60 * 60
         logging.debug("sleep for {}".format(reportIntervalInSeconds))
+
+        report.generateReport(Platform.android)
+        report.generateReport(Platform.ios)
+        
         time.sleep(reportIntervalInSeconds)
 
 
