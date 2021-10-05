@@ -91,7 +91,6 @@ class MSTeams:
         messageSection.addFact("Device Market Name", reviewPlayStore.deviceProductName)
         messageSection.addFact("Android Version", reviewPlayStore.androidOsVersion)
         messageSection.linkButton("More details", reviewPlayStore.url)
-        messageSection.linkButton("API Level", "https://source.android.com/setup/start/build-numbers")
 
         teamsMessage.addSection(messageSection)
 
