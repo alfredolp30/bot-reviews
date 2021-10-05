@@ -55,8 +55,6 @@ def getReports():
         report.generateReport(Platform.android)
         report.generateReport(Platform.ios)
 
-
-
 t1 = threading.Thread(target=getReviewsIos)
 t1.start()
 

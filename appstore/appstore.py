@@ -1,5 +1,5 @@
 import logging
-from model.review_appstore import ReviewAppstore
+from model.review_appstore import ReviewAppStore
 import requests
 import json
 from datetime import datetime
@@ -18,12 +18,13 @@ class AppStore:
     URL_REVIEW = "https://itunes.apple.com/{}/rss/customerreviews/page={}/id={}/sortBy=mostRecent/json"
     URL_ICON = "http://itunes.apple.com/lookup?id={}&country={}"
 
-    def __init__(self, appId: str, appStoreKeyId: str, appStoreKey: str, appStoreIssuerId: str, regions: dict):
+    def __init__(self, appId: str, appStoreKeyId: str, appStoreKey: str, appStoreIssuerId: str, regions: dict, lastDate: datetime):
         self.appId = appId
         self.regions = regions
         self.appStoreKeyId = appStoreKeyId
         self.appStoreKey = appStoreKey
         self.appStoreIssuerId = appStoreIssuerId
+        self.lastDate = lastDate
 
 
     def __getAppNameAndBundleId(self) -> None:
@@ -52,7 +53,7 @@ class AppStore:
         
 
 
-    def __jsonToReviewAppStore(self, entryJson: dict, region: str) -> ReviewAppstore:
+    def __jsonToReviewAppStore(self, entryJson: dict, region: str) -> ReviewAppStore:
         try:
             id = entryJson['id']['label']
             appId = self.appId
@@ -66,7 +67,7 @@ class AppStore:
             rating = int(entryJson['im:rating']['label'])
             iconUrl = self.iconUrl
             
-            return ReviewAppstore(
+            return ReviewAppStore(
                 id, 
                 appId, 
                 appName, 
@@ -86,7 +87,7 @@ class AppStore:
 
         return None
 
-    def getReviews(self) -> list[ReviewAppstore]:
+    def getReviews(self) -> list[ReviewAppStore]:
         self.__getAppNameAndBundleId()
         self.__getIconUrl()
 
@@ -97,7 +98,7 @@ class AppStore:
 
         return reviewsAppstore
 
-    def __getReviews(self, region: str) -> list[ReviewAppstore]:
+    def __getReviews(self, region: str) -> list[ReviewAppStore]:
         reviewsAppstore = []
         page = 1
 
@@ -130,6 +131,16 @@ class AppStore:
                     page = 0
             else: 
                 page = 0
+            
+
+            if len(reviewsAppstore) > 0:
+                lastReview = reviewsAppstore[-1]
+            else: 
+                lastReview = None
+
+            # TODO break if newest is saved 
+            #if lastReview and self.lastDate and lastReview.date.timestamp() < self.lastDate.timestamp():
+            #    page = 0
 
         
         return reviewsAppstore 

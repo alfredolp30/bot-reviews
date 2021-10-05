@@ -1,6 +1,7 @@
 from datetime import datetime
+import logging
 from db.db_manager import DBManager
-from model.review_appstore import ReviewAppstore
+from model.review_appstore import ReviewAppStore
 
 
 class AppStoreDao:
@@ -29,34 +30,38 @@ class AppStoreDao:
         '''.format(self.tableName)
 
         self.dbManager.createTable(createTable)
-
     
-    def save(self, review: ReviewAppstore):
+    def save(self, review: ReviewAppStore):
         self.dbManager.insert(self.tableName, review.asJson())
 
-    def contains(self, review: ReviewAppstore) -> bool:
+    def contains(self, review: ReviewAppStore) -> bool:
         return self.dbManager.contains(self.tableName, "id", "'{}'".format(review.id))
 
-    def getReviewsByDate(self, appId: str, date: int) -> list[ReviewAppstore]:
-        values = self.dbManager.get(self.tableName, "appId='{}' and date>='{}'".format(appId, date), orderBy = "date")
+    def getReviewsByDate(self, appId: str, date: int) -> list[ReviewAppStore]:
+        values = self.dbManager.get(self.tableName, where="appId='{}' and date>='{}'".format(appId, date), orderBy = "date")
         
         reviews = []
 
         for value in values: 
-            id = value[0]
-            appId = value[1]
-            appName = value[2]
-            appVersion = value[3]
-            url = value[4]
-            author = value[5]
-            date = value[6]
-            title = value[7]
-            description = value[8]
-            rating = value[9]
-            region = value[10]
-            iconUrl = value[11]
+            reviews.append(self.__valueToReview(value))
 
-            reviews.append(ReviewAppstore(
+        return reviews
+
+    def __valueToReview(self, value: list[any]) -> ReviewAppStore:
+        id = value[0]
+        appId = value[1]
+        appName = value[2]
+        appVersion = value[3]
+        url = value[4]
+        author = value[5]
+        date = datetime.utcfromtimestamp(value[6])
+        title = value[7]
+        description = value[8]
+        rating = value[9]
+        region = value[10]
+        iconUrl = value[11]
+
+        return ReviewAppStore(
                 id, 
                 appId,
                 appName, 
@@ -68,6 +73,15 @@ class AppStoreDao:
                 description, 
                 rating, 
                 region, 
-                iconUrl))
+                iconUrl
+        )
 
-        return reviews
+    def lastReview(self, appId) -> ReviewAppStore:  
+        values = self.dbManager.get(self.tableName, where="appId='{}'".format(appId), orderBy = "date", limit=1)
+
+        if len(values) > 0:
+            value = values[0]
+            return self.__valueToReview(value)
+        else:
+            logging.warning("Error getting first ReviewAppStore")
+            return None

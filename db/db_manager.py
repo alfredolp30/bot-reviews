@@ -1,7 +1,5 @@
 import logging
-from model.review_appstore import ReviewAppstore
 import sqlite3
-from sqlite3.dbapi2 import Error
 
 
 class DBManager: 
@@ -41,16 +39,23 @@ class DBManager:
         return contains
     
 
-    def get(self, table: str, comparator: str, orderBy: str) -> list[any]: 
+    def get(self, table: str, where: str = None, orderBy: str = None, limit: int = None) -> list[any]: 
         try: 
-            sql = 'SELECT * FROM {} WHERE {} ORDER BY {} DESC'.format(table, comparator, orderBy)
+            sql = 'SELECT * FROM {}'.format(table, where, orderBy)
+
+            if where:
+                sql += ' WHERE {}'.format(where)
+            if orderBy:
+                sql += ' ORDER BY {} DESC'.format(orderBy)
+            if limit: 
+                sql += ' LIMIT {}'.format(limit)
+
             value = self.con.cursor().execute(sql).fetchall()
             return value
         except Exception as e:
             logging.error('error get database {}'.format(e))
         
         return []
-        
-
+    
 
 

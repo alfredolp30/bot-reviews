@@ -130,4 +130,5 @@ dmypy.json
 wordcloud
 *.db
 *.json
+!config/*.json
 *.p8

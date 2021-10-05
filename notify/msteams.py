@@ -2,13 +2,14 @@ import pymsteams
 import logging
 
 from config.configmanager import ConfigManager
-from model.review_appstore import ReviewAppstore
+from model.review_appstore import ReviewAppStore
 from model.review_playstore import ReviewPlayStore
 from report.platform import Platform
 
 class MSTeams:
     def __init__(self, configManager: ConfigManager) -> None:
         self.hook = configManager.getValueFromConfig("teamsHook")
+        self.dryRun = configManager.getValueFromConfig("dryRun")
 
     def __getColor(self, rating: int) -> str: 
         if rating >= 4: 
@@ -35,13 +36,17 @@ class MSTeams:
             return "{}".format(ratingTitle)
 
     def __postTeamsMessage(self, teamsMessage: pymsteams.connectorcard): 
+        if self.dryRun:
+            logging.debug(teamsMessage.payload)
+            return
+
         try: 
             teamsMessage.send()
         except Exception as e:
             logging.error("dont send to teams {}".format(e))
 
-    def postReviewAppStore(self, reviewAppStore: ReviewAppstore) -> None:
-        logging.debug("postReviewAppstore")
+    def postReviewAppStore(self, reviewAppStore: ReviewAppStore) -> None:
+        logging.debug("postReviewAppStore")
         teamsMessage = pymsteams.connectorcard(self.hook)
 
 
@@ -68,7 +73,7 @@ class MSTeams:
 
 
     def postReviewPlayStore(self, reviewPlayStore: ReviewPlayStore) -> None:
-        logging.debug("postReviewAppstore")
+        logging.debug("postReviewAppStore")
         teamsMessage = pymsteams.connectorcard(self.hook)
 
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-class ReviewAppstore:
+class ReviewAppStore:
     
     def __init__(self, id: str, appId: str, appName: str, appVersion: str, url: str, author: str, date: datetime, title: str, description: str, rating: int, region: str, iconUrl: str):
         self.id = id
@@ -25,7 +25,7 @@ class ReviewAppstore:
             'appVersion': self.appVersion,
             'url': self.url,
             'author': self.author,
-            'date': self.date,
+            'date': int(self.date.timestamp()),
             'title': self.title,
             'description': self.description,
             'rating': self.rating,

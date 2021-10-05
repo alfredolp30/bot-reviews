@@ -2,6 +2,7 @@
     "teamsHook": "URL to teams webhook",
     "logLevel": "leve options: debug|info|warn|error",
     "intervalInSeconds": 1800,
+    "dryRun": true,
 
     "report": {
       "intervalInDays": 14,

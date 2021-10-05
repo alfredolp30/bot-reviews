@@ -26,7 +26,7 @@ class ReviewPlayStore:
             'appVersion': self.appVersion,
             'url': self.url,
             'author': self.author,
-            'date': self.date,
+            'date': int(self.date.timestamp()),
             'description': self.description,
             'rating': self.rating,
             'iconUrl': self.iconUrl,

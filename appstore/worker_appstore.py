@@ -13,7 +13,9 @@ class WorkerAppStore:
 
     def __workReview(self, appId: str, appStoreKeyId: str, appStoreKey: str, appStoreIssuerId: str, regions: dict) -> None: 
         
-        reviews = AppStore(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions).getReviews()
+        lastReview = self.appStoreDao.lastReview(appId)
+        lastDate = lastReview.date if lastReview else None
+        reviews = AppStore(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions, lastDate).getReviews()
 
         for review in reviews:
             contains = self.appStoreDao.contains(review)
