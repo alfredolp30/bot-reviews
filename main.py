@@ -50,11 +50,10 @@ def getReports():
 
         reportIntervalInSeconds = report.intervalReportInDays * 24 * 60 * 60
         logging.debug("sleep for {}".format(reportIntervalInSeconds))
+        time.sleep(reportIntervalInSeconds)
 
         report.generateReport(Platform.android)
         report.generateReport(Platform.ios)
-        
-        time.sleep(reportIntervalInSeconds)
 
 
 
