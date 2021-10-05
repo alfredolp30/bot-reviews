@@ -1,49 +1,27 @@
 {
-    "teamsHook": "https://uolinc.webhook.office.com/webhookb2/17052649-d80a-4878-ad49-2dbd084526c7@7575b092-fc5f-4f6c-b7a5-9e9ef7aca80d/IncomingWebhook/ce2dbfcc751a43f78f24f5143e0ef447/66010938-dde1-4d3b-b6ab-640330a08131",
-    "logLevel": "debug",
+    "teamsHook": "URL to teams webhook",
+    "logLevel": "leve options: debug|info|warn|error",
     "intervalInSeconds": 1800,
 
     "report": {
       "intervalInDays": 14,
-      "firebaseKey": "client-secret-firebase.json",
-      "firebaseProject": "push-app-mail-uol" 
+      "firebaseKey": "path to firebase admin key: https://console.cloud.google.com/iam-admin/serviceaccounts/",
+      "firebaseProject": "firebase project ID" 
     },
 
     "appsAndroid": [
       {
-        "appId": "br.com.uol.mail.bol",
-        "playStoreKey": "api-project-console.json"
-      },
-      {
-        "appId": "br.com.uol.mail.uol",
-        "playStoreKey": "api-project-console.json"
-      },
-      {
-        "appId": "br.com.uol.mail.uolhost",
-        "playStoreKey": "api-project-console.json"
+        "appId": "bundle ID",
+        "playStoreKey": "path to google play api key: https://developers.google.com/android-publisher"
       }
     ],
 
     "appsIos": [
         {
-            "appStoreKeyId": "363B3GGQNV",
-            "appStoreKey": "AuthKey_363B3GGQNV.p8",
-            "appStoreIssuerId": "69a6de70-7cfc-47e3-e053-5b8c7c11a4d1",
-            "appId": "1372864564"
-        }, 
-        {
-            "appStoreKeyId": "363B3GGQNV",
-            "appStoreKey": "AuthKey_363B3GGQNV.p8",
-            "appStoreIssuerId": "69a6de70-7cfc-47e3-e053-5b8c7c11a4d1",
-            "appName": "UOL Mail",
-            "appId": "1372863832"
-        },
-        {
-            "appStoreKeyId": "363B3GGQNV",
-            "appStoreKey": "AuthKey_363B3GGQNV.p8",
-            "appStoreIssuerId": "69a6de70-7cfc-47e3-e053-5b8c7c11a4d1",
-            "appName": "UOL Mail Pro",
-            "appId": "1372865834"
+            "appId": "app ID (is not bundle id)",
+            "appStoreKeyId": "Key ID column after generate app store connect API: https://developer.apple.com/documentation/appstoreserverapi/creating_api_keys_to_use_with_the_app_store_server_api",
+            "appStoreKey": "private key generate in app store connect",
+            "appStoreIssuerId": "Issuer id generate in app store connect"
         }
     ]
   }
