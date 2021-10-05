@@ -25,8 +25,8 @@ class Report:
     def __init__(self, dbManager: DBManager, configManager: ConfigManager, msTeams: MSTeams, firebaseBucket: FirebaseBucket) -> None:
         self.appStoreDao = AppStoreDao(dbManager)
         self.playStoreDao = PlayStoreDao(dbManager)
-        self.appsIos = configManager.getValueFromConfig('apps_ios')
-        self.appsAndroid = configManager.getValueFromConfig('apps_android')
+        self.appsIos = configManager.getValueFromConfig('appsIos')
+        self.appsAndroid = configManager.getValueFromConfig('appsAndroid')
         self.intervalReportInDays = configManager.getValueFromConfig('report/intervalInDays')
         self.msTeams = msTeams
         self.firebaseBucket = firebaseBucket

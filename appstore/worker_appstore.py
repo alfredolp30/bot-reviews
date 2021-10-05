@@ -26,7 +26,7 @@ class WorkerAppStore:
                 break
 
     def run(self) -> None: 
-        apps = self.configManager.getValueFromConfig("apps_ios")
+        apps = self.configManager.getValueFromConfig("appsIos")
         regions = self.configManager.getRegions() 
         
         for app in apps:

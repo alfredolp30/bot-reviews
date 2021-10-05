@@ -25,7 +25,7 @@ class WorkerPlayStore:
                 break
 
     def run(self): 
-        apps = self.configManager.getValueFromConfig("apps_android")
+        apps = self.configManager.getValueFromConfig("appsAndroid")
         
         for app in apps:
             try: 

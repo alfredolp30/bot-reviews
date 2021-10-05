@@ -9,7 +9,7 @@
       "firebaseProject": "push-app-mail-uol" 
     },
 
-    "apps_android": [
+    "appsAndroid": [
       {
         "appId": "br.com.uol.mail.bol",
         "playStoreKey": "api-project-console.json"
@@ -24,7 +24,7 @@
       }
     ],
 
-    "apps_ios": [
+    "appsIos": [
         {
             "appStoreKeyId": "363B3GGQNV",
             "appStoreKey": "AuthKey_363B3GGQNV.p8",
