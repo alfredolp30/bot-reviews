@@ -12,8 +12,6 @@ class WorkerPlayStore:
         
         reviews = PlayStore(appId, playStoreKey).getReviews()
 
-        print(reviews)
-
         for review in reviews:
             contains = self.playStoreDao.contains(review)
 

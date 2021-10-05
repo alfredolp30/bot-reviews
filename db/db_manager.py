@@ -44,7 +44,6 @@ class DBManager:
     def get(self, table: str, comparator: str, orderBy: str) -> list[any]: 
         try: 
             sql = 'SELECT * FROM {} WHERE {} ORDER BY {} DESC'.format(table, comparator, orderBy)
-            print(sql)
             value = self.con.cursor().execute(sql).fetchall()
             return value
         except Exception as e:
