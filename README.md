@@ -9,7 +9,7 @@ This project is heavily inspired by [App-Reviews](https://github.com/armanso/app
     pip3 install -r requirements.txt 
 
 ## Configuration
-It needs to change [config/config.json](config/config.json) before run:
+It needs to create config/config.json as template: [config_template.json](config/config_template.json):
 
 ### Options
 All bellow options are required: 
