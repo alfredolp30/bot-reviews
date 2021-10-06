@@ -41,7 +41,7 @@ class PlayStoreDao:
         return self.dbManager.contains(self.tableName, "id", "'{}'".format(review.id))
 
     def getReviewsByDate(self, appId: str, date: int) -> list[ReviewPlayStore]:
-        values = self.dbManager.get(self.tableName, where="appId='{}' and date>='{}'".format(appId, date), orderBy = "date")
+        values = self.dbManager.get(self.tableName, where="appId='{}' and date>={}".format(appId, date), orderBy = "date")
         
         reviews = []
 

@@ -71,7 +71,7 @@ class Report:
 
         for app in apps:
             appId = app['appId']
-            reviews = dao.getReviewsByDate(appId, date)
+            reviews = dao.getReviewsByDate(appId, int(date.timestamp()))
             reviewCount = len(reviews)
 
             if reviewCount == 0:
