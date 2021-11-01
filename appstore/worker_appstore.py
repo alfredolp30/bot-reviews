@@ -17,7 +17,6 @@ class WorkerAppStore:
         lastReview = self.appStoreDao.lastReview(appId)
         lastDate = lastReview.date if lastReview else None
         reviews = AppStore(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions, lastDate).getReviews()
-        reviews = self.__sort_reviews(reviews)
 
         for review in reviews:
             contains = self.appStoreDao.contains(review)
@@ -26,7 +25,7 @@ class WorkerAppStore:
                 self.appStoreDao.save(review)
                 self.msTeams.postReviewAppStore(review)
             else:
-                logging.debug("Contains review with id {}".format(review.id))
+                logging.debug("Contains review #{} with id {}".format(reviews.index(review), review.id))
                 break
 
     def run(self) -> None: 
@@ -43,7 +42,3 @@ class WorkerAppStore:
                 self.__workReview(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions)
             except Exception as e:
                 logging.error("key not found {}".format(e))
-
-
-    def __sort_reviews(self, reviews: list[ReviewAppStore]) -> list[ReviewAppStore]:
-        return reviews.sort(key=lambda x: x.date, reverse=True)

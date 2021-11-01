@@ -96,6 +96,8 @@ class AppStore:
         for region in self.regions:
             reviewsAppstore += self.__getReviews(region)
 
+        reviewsAppstore.sort(key=lambda x: x.date, reverse=True)
+
         return reviewsAppstore
 
     def __getReviews(self, region: str) -> list[ReviewAppStore]:
