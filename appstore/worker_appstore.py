@@ -3,6 +3,7 @@ import logging
 from config.configmanager import ConfigManager
 from db.appstore_dao import AppStoreDao
 from db.db_manager import DBManager
+from model.review_appstore import ReviewAppStore
 from notify.msteams import MSTeams
 
 class WorkerAppStore:
@@ -16,6 +17,7 @@ class WorkerAppStore:
         lastReview = self.appStoreDao.lastReview(appId)
         lastDate = lastReview.date if lastReview else None
         reviews = AppStore(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions, lastDate).getReviews()
+        reviews = self.__sort_reviews(reviews)
 
         for review in reviews:
             contains = self.appStoreDao.contains(review)
@@ -41,3 +43,7 @@ class WorkerAppStore:
                 self.__workReview(appId, appStoreKeyId, appStoreKey, appStoreIssuerId, regions)
             except Exception as e:
                 logging.error("key not found {}".format(e))
+
+
+    def __sort_reviews(self, reviews: list[ReviewAppStore]) -> list[ReviewAppStore]:
+        return reviews.sort(key=lambda x: x.date, reverse=True)
