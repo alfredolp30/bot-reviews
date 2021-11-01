@@ -21,12 +21,15 @@ class PlayStore:
         service = googleapiclient.discovery.build("androidpublisher", "v3", credentials=credentials, cache_discovery=False)
         response = service.reviews().list(packageName = self.appId).execute()
         
+        reviewsPlayStore = []
         if isinstance(response, dict):
-            return self.__getReviews(response)
+            reviewsPlayStore = self.__getReviews(response)
         else: 
             logging.error('Not load json from google api')
-        
-        return []
+
+        reviewsPlayStore.sort(key=lambda x: x.date, reverse=True)
+
+        return reviewsPlayStore
 
     def __getReviews(self, resultJson): 
         reviewsPlayStore = []
