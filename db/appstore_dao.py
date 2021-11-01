@@ -35,7 +35,7 @@ class AppStoreDao:
         self.dbManager.insert(self.tableName, review.asJson())
 
     def contains(self, review: ReviewAppStore) -> bool:
-        return self.dbManager.contains(self.tableName, "id", "'{}'".format(review.id))
+        return self.dbManager.contains(self.tableName, where="appId='{}' and id='{}'".format(review.appId, review.id))
 
     def getReviewsByDate(self, appId: str, date: int) -> list[ReviewAppStore]:
         values = self.dbManager.get(self.tableName, where="appId='{}' and date>={}".format(appId, date), orderBy = "date")

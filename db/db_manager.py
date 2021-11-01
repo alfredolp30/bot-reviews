@@ -26,10 +26,10 @@ class DBManager:
         except Exception as e:
             logging.error('error insert database {}'.format(e))
 
-    def contains(self, table: str, key: str, value: any) -> bool:
+    def contains(self, table: str, where: str) -> bool:
         contains = False
         try: 
-            sql = 'SELECT 1 FROM {} WHERE {}={}'.format(table, key, value)
+            sql = 'SELECT 1 FROM {} WHERE {}'.format(table, where)
             value = self.con.cursor().execute(sql).fetchone()
             if value != None:
                 contains = value[0] >= 1
