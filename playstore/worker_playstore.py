@@ -19,7 +19,7 @@ class WorkerPlayStore:
                 self.playStoreDao.save(review)
                 self.msTeams.postReviewPlayStore(review)
             else:
-                logging.debug("Contains review with id {}".format(review.id))
+                logging.debug("Contains review #{} with id {}".format(reviews.index(review), review.id))
                 break
 
     def run(self): 
