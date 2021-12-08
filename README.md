@@ -15,7 +15,7 @@ All bellow options are required:
 -   **teamsHook:**  URL to your webhook teams channel
 -   **logLevel:**  Level for logging terminal [debug, info, warn, error] 
 -   **intervalInSeconds:**  Interval of seconds to retry getting user reviews
--   **dryRun:** Only saving user reviews in database and don't post in teams channel 
+-   **dryRun:** If true it's only saving user reviews in database and don't post in teams channel 
 -   **report:** Report object
 -   **appsAndroid:**  List of AppAndroid object
 -   **appsIos:**  List of AppIos object
