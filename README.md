@@ -16,6 +16,16 @@ All bellow options are required:
 
 -   **teamsHook:**  URL to your webhook teams channel
 -   **logLevel:**  Level for logging terminal [debug, info, warn, error] 
--   **intervalInSeconds:**  Interval to retry getting list of latest user reviews list from store
--   **apps_android:**  List of AppAndroid  
--   **apps_ios:**  List of AppIos
+-   **intervalInSeconds:**  Interval to retry getting user reviews
+-   **dryRun:** Only save user reviews in database and don't post in teams channel 
+-   **report:** Report object
+-   **appsAndroid:**  List of AppAndroid object
+-   **appsIos:**  List of AppIos object
+
+**Report** object
+-   **intervalInDays:** Days to generate report
+-   **firebaseKey:** Path to Firebase Key
+-   **firebaseKey:** Project ID
+
+**AppAndroid** object
+
