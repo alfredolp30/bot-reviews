@@ -1,12 +1,12 @@
 {
     "teamsHook": "URL to teams webhook",
     "logLevel": "leve options: debug|info|warn|error",
-    "intervalInSeconds": 1800,
-    "dryRun": true,
+    "intervalInSeconds": Interval of seconds to retry getting user reviews: E.g.: 1800, 
+    "dryRun": If true it's only saving user reviews in database and don't post in teams channel: E.g.: false,
 
     "report": {
-      "intervalInDays": 14,
-      "firebaseKey": "path to firebase admin key: https://console.cloud.google.com/iam-admin/serviceaccounts/",
+      "intervalInDays": Interval of days to generate report: E.g.: 14,
+      "firebaseKey": "",
       "firebaseProject": "firebase project ID" 
     },
 
