@@ -1,28 +1,28 @@
 {
-    "teamsHook": "URL to teams webhook",
-    "logLevel": "leve options: debug|info|warn|error",
-    "intervalInSeconds": Interval of seconds to retry getting user reviews: E.g.: 1800, 
-    "dryRun": If true it's only saving user reviews in database and don't post in teams channel: E.g.: false,
+    "teamsHook": "https://uolinc.webhook.office.com/webhookb2/17052649",
+    "logLevel": "debug",
+    "intervalInSeconds": 1800, 
+    "dryRun": true,
 
     "report": {
-      "intervalInDays": Interval of days to generate report: E.g.: 14,
-      "firebaseKey": "",
-      "firebaseProject": "firebase project ID" 
+      "intervalInDays": 14,
+      "firebaseKey": "my-secret-firebase.json",
+      "firebaseProject": "my-project-id" 
     },
 
     "appsAndroid": [
       {
-        "appId": "bundle ID",
-        "playStoreKey": "path to google play api key: https://developers.google.com/android-publisher"
+        "appId": "com.google.myapp",
+        "playStoreKey": "my-api-project-console.json"
       }
     ],
 
     "appsIos": [
         {
-            "appId": "app ID (is not bundle id)",
-            "appStoreKeyId": "Key ID column after generate app store connect API: https://developer.apple.com/documentation/appstoreserverapi/creating_api_keys_to_use_with_the_app_store_server_api",
-            "appStoreKey": "private key generate in app store connect",
-            "appStoreIssuerId": "Issuer id generate in app store connect"
+            "appId": "1234567"
+            "appStoreKeyId": "123ABC123",
+            "appStoreKey": "my-app-store-api-key.p8",
+            "appStoreIssuerId": "1231ABC-123123AB-123123ABC",
         }
     ]
   }
