@@ -2,7 +2,7 @@ appstoreconnect==0.9.1
 pymsteams==0.1.15
 firebase_admin==5.0.3
 requests==2.23.0
-google_play_scraper==1.0.2
+play-scraper
 google_api_python_client==2.24.0
 Pillow==8.3.2
 protobuf==3.18.0

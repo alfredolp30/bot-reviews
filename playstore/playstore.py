@@ -58,8 +58,8 @@ class PlayStore:
 
 
     def __scraperAppNameAndIcon(self): 
-        from google_play_scraper import app
-        result = app(self.appId)
+        import play_scraper
+        result = play_scraper.details(self.appId)
 
         try:
             self.appName = result['title']
