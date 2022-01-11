@@ -5,6 +5,7 @@ from datetime import datetime
 from google.oauth2 import service_account
 import googleapiclient.discovery
 from model.review_playstore import ReviewPlayStore
+import play_scraper
 
 
 class PlayStore:
@@ -58,7 +59,6 @@ class PlayStore:
 
 
     def __scraperAppNameAndIcon(self): 
-        import play_scraper
         result = play_scraper.details(self.appId)
 
         try:
