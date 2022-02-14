@@ -133,17 +133,6 @@ class AppStore:
                     page = 0
             else: 
                 page = 0
-            
-
-            if len(reviewsAppstore) > 0:
-                lastReview = reviewsAppstore[-1]
-            else: 
-                lastReview = None
-
-            # TODO break if newest is saved 
-            #if lastReview and self.lastDate and lastReview.date.timestamp() < self.lastDate.timestamp():
-            #    page = 0
-
         
         return reviewsAppstore 
 

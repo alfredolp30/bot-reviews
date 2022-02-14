@@ -25,7 +25,7 @@ class MSTeams:
         ratingTitle = ""
 
         for i in range(0, 5, 1):
-            if i <= rating:
+            if i < rating:
                 ratingTitle += "★"
             else:
                 ratingTitle += "☆"
